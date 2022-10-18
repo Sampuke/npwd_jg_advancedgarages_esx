@@ -59,7 +59,7 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'npwd_qb_garage',
+      name: 'npwd_jg_advancedgarages',
       filename: 'remoteEntry.js',
       exposes: {
         './config': './npwd.config',
