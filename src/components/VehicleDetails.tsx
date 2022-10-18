@@ -17,11 +17,12 @@ import { ServerPromiseResp } from '../types/common';
 import fetchNui from '../utils/fetchNui';
 
 const VehicleDetails = ({ veh }: { veh: GarageItem }) => {
-
   const handleTrackVehicle = (plate: string) => {
-    fetchNui<ServerPromiseResp>('npwd:qb-garage:requestWaypoint', { plate }).then((res) => {
-      console.log(res.data);
-    });
+    fetchNui<ServerPromiseResp>('npwd:jg-advancedgarages:requestWaypoint', { plate }).then(
+      (res) => {
+        console.log(res.data);
+      },
+    );
   };
 
   return (
@@ -62,7 +63,12 @@ const VehicleDetails = ({ veh }: { veh: GarageItem }) => {
         </ListItem>
       </List>
 
-      <Button color="primary" variant="contained" disabled={veh.state !== 'out'} onClick={() => handleTrackVehicle(veh.plate)}>
+      <Button
+        color="primary"
+        variant="contained"
+        disabled={veh.state !== 'out'}
+        onClick={() => handleTrackVehicle(veh.plate)}
+      >
         Track
       </Button>
     </>

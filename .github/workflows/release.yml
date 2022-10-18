@@ -46,7 +46,7 @@ jobs:
         id: auto_release
         with:
           repo_token: '${{ secrets.GITHUB_TOKEN }}'
-          title: NPWD QB Garage App | ${{ steps.get_tag.outputs.VERSION_TAG }}
+          title: NPWD JG Advanced Garages | ${{ steps.get_tag.outputs.VERSION_TAG }}
           prerelease: false
           files: npwd_jg_advancedgarages.zip
 
