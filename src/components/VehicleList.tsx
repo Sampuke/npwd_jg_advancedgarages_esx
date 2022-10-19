@@ -30,41 +30,41 @@ export const VehicleList: React.FC<VehicleListProps> = ({ vehicles, isDarkMode }
     car: {
       icon: <DirectionsCarIcon sx={{ fontSize: 35 }} />,
       status: {
-        out: orange[500],
-        garaged: green[500],
-        impounded: red[500],
-        seized: red[500],
-        unknown: grey[500],
+        'not in garage': orange[500],
+        'in garage': green[500],
+        // impounded: red[500],
+        // seized: red[500],
+        // unknown: grey[500],
       },
     },
     aircraft: {
       icon: <FlightIcon sx={{ fontSize: 35 }} />,
       status: {
-        out: orange[500],
-        garaged: green[500],
-        impounded: red[500],
-        seized: red[500],
-        unknown: grey[500],
+        'not in garage': orange[500],
+        'in garage': green[500],
+        // impounded: red[500],
+        // seized: red[500],
+        // unknown: grey[500],
       },
     },
     boat: {
       icon: <DirectionsBoatIcon sx={{ fontSize: 35 }} />,
       status: {
-        out: orange[500],
-        garaged: green[500],
-        impounded: red[500],
-        seized: red[500],
-        unknown: grey[500],
+        'not in garage': orange[500],
+        'in garage': green[500],
+        // impounded: red[500],
+        // seized: red[500],
+        // unknown: grey[500],
       },
     },
     bike: {
       icon: <PedalBikeIcon sx={{ fontSize: 35 }} />,
       status: {
-        out: orange[500],
-        garaged: green[500],
-        impounded: red[500],
-        seized: red[500],
-        unknown: grey[500],
+        'not in garage': orange[500],
+        'in garage': green[500],
+        // impounded: red[500],
+        // seized: red[500],
+        // unknown: grey[500],
       },
     },
   };
@@ -78,7 +78,10 @@ export const VehicleList: React.FC<VehicleListProps> = ({ vehicles, isDarkMode }
       {Object.keys(vehicles).map((key) => (
         <List
           subheader={
-            <ListSubheader sx={{ cursor: 'pointer', position: "static" }} onClick={() => expandItem(key)}>
+            <ListSubheader
+              sx={{ cursor: 'pointer', position: 'static' }}
+              onClick={() => expandItem(key)}
+            >
               {key.toUpperCase()}
             </ListSubheader>
           }
@@ -91,7 +94,7 @@ export const VehicleList: React.FC<VehicleListProps> = ({ vehicles, isDarkMode }
                     sx={{
                       width: '100%',
                       borderBottom: '4px solid',
-                      borderBottomColor: typeIcon[veh.type].status[veh.state],
+                      borderBottomColor: typeIcon[veh.type].status[veh.state] || red[500],
                     }}
                   >
                     <AccordionSummary>

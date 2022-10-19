@@ -66,7 +66,7 @@ const VehicleDetails = ({ veh }: { veh: GarageItem }) => {
       <Button
         color="primary"
         variant="contained"
-        disabled={veh.state !== 'out'}
+        disabled={veh.state !== 'not in garage'}
         onClick={() => handleTrackVehicle(veh.plate)}
       >
         Track
