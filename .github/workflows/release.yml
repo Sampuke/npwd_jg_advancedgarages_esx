@@ -49,6 +49,7 @@ jobs:
           title: NPWD JG Advanced Garages | ${{ steps.get_tag.outputs.VERSION_TAG }}
           prerelease: false
           files: npwd_jg_advancedgarages.zip
+          automatic_release_tag: 'latest'
 
         env:
           CI: false
