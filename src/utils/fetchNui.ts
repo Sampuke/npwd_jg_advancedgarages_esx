@@ -26,7 +26,7 @@ async function fetchNui<T = any, D = any>(eventName: string, data?: D, mockResp?
 
   const responseObj = await resp.json();
 
-  return responseObj;
+  return responseObj.data;
 }
 
 export default fetchNui;

@@ -32,9 +32,7 @@ export const VehicleList: React.FC<VehicleListProps> = ({ vehicles, isDarkMode }
       status: {
         'not in garage': orange[500],
         'in garage': green[500],
-        // impounded: red[500],
-        // seized: red[500],
-        // unknown: grey[500],
+        impound: red[500],
       },
     },
     aircraft: {
@@ -42,9 +40,7 @@ export const VehicleList: React.FC<VehicleListProps> = ({ vehicles, isDarkMode }
       status: {
         'not in garage': orange[500],
         'in garage': green[500],
-        // impounded: red[500],
-        // seized: red[500],
-        // unknown: grey[500],
+        impound: red[500],
       },
     },
     boat: {
@@ -52,9 +48,7 @@ export const VehicleList: React.FC<VehicleListProps> = ({ vehicles, isDarkMode }
       status: {
         'not in garage': orange[500],
         'in garage': green[500],
-        // impounded: red[500],
-        // seized: red[500],
-        // unknown: grey[500],
+        impound: red[500],
       },
     },
     bike: {
@@ -62,9 +56,7 @@ export const VehicleList: React.FC<VehicleListProps> = ({ vehicles, isDarkMode }
       status: {
         'not in garage': orange[500],
         'in garage': green[500],
-        // impounded: red[500],
-        // seized: red[500],
-        // unknown: grey[500],
+        impound: red[500],
       },
     },
   };
@@ -75,8 +67,9 @@ export const VehicleList: React.FC<VehicleListProps> = ({ vehicles, isDarkMode }
 
   return (
     <Box>
-      {Object.keys(vehicles).map((key) => (
+      {Object.keys(vehicles).map((key, i) => (
         <List
+          key={i}
           subheader={
             <ListSubheader
               sx={{ cursor: 'pointer', position: 'static' }}
@@ -87,9 +80,9 @@ export const VehicleList: React.FC<VehicleListProps> = ({ vehicles, isDarkMode }
           }
         >
           <Collapse in={collapseId === key}>
-            {vehicles[key].map((veh: GarageItem) => {
+            {vehicles[key].map((veh: GarageItem, i: number) => {
               return (
-                <ListItem>
+                <ListItem key={i}>
                   <Accordion
                     sx={{
                       width: '100%',

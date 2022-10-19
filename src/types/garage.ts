@@ -5,7 +5,7 @@ export interface GarageItem {
   garage: string;
   hash: string;
   plate: string;
-  state: 'not in garage' | 'in garage';
+  state: 'not in garage' | 'in garage' | 'impound';
   vehicle: string;
   brand: string;
   type: 'car' | 'aircraft' | 'boat' | 'bike';

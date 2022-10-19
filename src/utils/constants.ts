@@ -8,10 +8,10 @@ export const MockGarage: GarageItem[] = [
     vehicle: 'Comet',
     body: 998,
     plate: '5DR943LZ',
-    garage: 'Pillbox Garage Parking',
+    garage: 'Someone has impounded the vehicle because you were speeding',
     brand: 'Pfister',
     type: 'car',
-    state: "out",
+    state: 'impound',
   },
   {
     engine: 1000,
@@ -23,7 +23,7 @@ export const MockGarage: GarageItem[] = [
     garage: 'Pillbox Garage Parking',
     brand: 'Pegassi',
     type: 'car',
-    state: "garaged",
+    state: 'in garage',
   },
   {
     engine: 1000,
@@ -35,7 +35,7 @@ export const MockGarage: GarageItem[] = [
     garage: 'Caears 24 Parking',
     brand: 'Declasse',
     type: 'car',
-    state: "garaged",
+    state: 'in garage',
   },
   {
     engine: 976,
@@ -47,7 +47,7 @@ export const MockGarage: GarageItem[] = [
     garage: 'LSYMC Boathouse',
     brand: 'Speedophile',
     type: 'boat',
-    state: "garaged",
+    state: 'in garage',
   },
   {
     engine: 1000,
@@ -59,6 +59,6 @@ export const MockGarage: GarageItem[] = [
     garage: 'Pillbox Garage Parking',
     brand: 'Buckingham',
     type: 'aircraft',
-    state: "out",
+    state: 'not in garage',
   },
 ];

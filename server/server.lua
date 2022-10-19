@@ -20,8 +20,8 @@ RegisterNetEvent("npwd:jg-advancedgarages:getVehicles", function()
       end
 
       if v.impound == 1 then
-        v.garage = "Impound"
-        v.state = json.decode(v.impound_data).reason
+        v.state = "impound"
+        v.garage = json.decode(v.impound_data).reason
       elseif v.in_garage then
         v.state = "in garage"
       else

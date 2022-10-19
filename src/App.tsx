@@ -42,11 +42,12 @@ const App = (props: AppProps) => {
   const isDarkMode = props.theme.palette.mode === 'dark';
 
   useEffect(() => {
-    fetchNui<ServerPromiseResp<GarageItem[]>>('npwd:jg-advancedgarages:getVehicles').then(
-      (resp) => {
-        setVehicles(resp.data);
-      },
-    );
+    const getVehicles = async () => {
+      const resp = await fetchNui<any>('npwd:jg-advancedgarages:getVehicles', false, MockGarage);
+      setVehicles(resp);
+    };
+
+    getVehicles();
   }, []);
 
   useEffect(() => {
