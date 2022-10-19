@@ -1,5 +1,7 @@
 # JG Scripts Advanced Garages - NPWD App
 
+⚠️ Currently QBCore only + work in progress!
+
 ## Requirements
 
 - [npwd](https://github.com/project-error/npwd) (Requires NPWD 1.5 or newer)
