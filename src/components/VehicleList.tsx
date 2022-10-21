@@ -10,7 +10,7 @@ import {
   AccordionDetails,
   Stack,
 } from '@mui/material';
-import { green, grey, orange, red } from '@mui/material/colors';
+import { orange, green, grey, red } from '@mui/material/colors';
 import React, { useState } from 'react';
 import { GarageItem } from '../types/garage';
 import FlightIcon from '@mui/icons-material/Flight';
@@ -28,34 +28,34 @@ export const VehicleList: React.FC<VehicleListProps> = ({ vehicles, isDarkMode }
   const [collapseId, setCollapseId] = useState<string | null>('car');
   const typeIcon = {
     car: {
-      icon: <DirectionsCarIcon sx={{ fontSize: 35 }} />,
+      icon: <DirectionsCarIcon sx={{ fontSize: 30 }} />,
       status: {
-        'not in garage': orange[500],
-        'in garage': green[500],
+        out: orange[500],
+        parked: green[500],
         impound: red[500],
       },
     },
     aircraft: {
-      icon: <FlightIcon sx={{ fontSize: 35 }} />,
+      icon: <FlightIcon sx={{ fontSize: 30 }} />,
       status: {
-        'not in garage': orange[500],
-        'in garage': green[500],
+        out: orange[500],
+        parked: green[500],
         impound: red[500],
       },
     },
     boat: {
-      icon: <DirectionsBoatIcon sx={{ fontSize: 35 }} />,
+      icon: <DirectionsBoatIcon sx={{ fontSize: 30 }} />,
       status: {
-        'not in garage': orange[500],
-        'in garage': green[500],
+        out: orange[500],
+        parked: green[500],
         impound: red[500],
       },
     },
     bike: {
-      icon: <PedalBikeIcon sx={{ fontSize: 35 }} />,
+      icon: <PedalBikeIcon sx={{ fontSize: 30 }} />,
       status: {
-        'not in garage': orange[500],
-        'in garage': green[500],
+        out: orange[500],
+        parked: green[500],
         impound: red[500],
       },
     },
@@ -86,8 +86,9 @@ export const VehicleList: React.FC<VehicleListProps> = ({ vehicles, isDarkMode }
                   <Accordion
                     sx={{
                       width: '100%',
-                      borderBottom: '4px solid',
-                      borderBottomColor: typeIcon[veh.type].status[veh.state] || red[500],
+                      borderBottom: '5px solid',
+                      borderBottomColor: typeIcon[veh.type].status[veh.state],
+                      borderRadius: '8px!important',
                     }}
                   >
                     <AccordionSummary>
@@ -99,16 +100,36 @@ export const VehicleList: React.FC<VehicleListProps> = ({ vehicles, isDarkMode }
                           alignItems: 'center',
                         }}
                       >
-                        <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }}>
+                        <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
                           {typeIcon[veh.type].icon}
-                          <Stack spacing={1}>
-                            <Typography sx={{ fontSize: 15 }}>
-                              {veh.brand + ' ' + veh.vehicle}
+                          <Stack spacing={0.5}>
+                            <Typography>{veh.brand + ' ' + veh.vehicle}</Typography>
+                            <Typography
+                              sx={{
+                                width: 'fit-content',
+                                fontSize: 12,
+                                fontWeight: 'bold',
+                                fontFamily: 'monospace',
+                                color: orange[500],
+                                background: 'black',
+                                padding: '3px 7px',
+                                borderRadius: '4px',
+                              }}
+                            >
+                              {veh.plate}
                             </Typography>
-                            <Typography sx={{ fontSize: 15 }}>{veh.plate}</Typography>
                           </Stack>
                         </Box>
-                        <Typography sx={{ fontSize: 14 }}>{veh.state.toUpperCase()}</Typography>
+                        <Typography
+                          sx={{
+                            fontSize: 12,
+                            fontWeight: 'bold',
+                            marginLeft: '7.5px',
+                            color: typeIcon[veh.type].status[veh.state],
+                          }}
+                        >
+                          {veh.state.toUpperCase()}
+                        </Typography>
                       </Box>
                     </AccordionSummary>
                     <AccordionDetails

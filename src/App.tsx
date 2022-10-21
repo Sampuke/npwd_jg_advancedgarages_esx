@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { NuiProvider } from 'react-fivem-hooks';
-import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { Header } from './styles/header.styles';
 import { IPhoneSettings } from '@project-error/npwd-types';
 import { i18n } from 'i18next';
-import { IconButton, Theme, StyledEngineProvider, ThemeProvider, Typography } from '@mui/material';
-import { ArrowBack } from '@mui/icons-material';
+import { Theme, StyledEngineProvider, ThemeProvider } from '@mui/material';
 import { GarageItem } from './types/garage';
 import { MockGarage } from './utils/constants';
 import { VehicleList } from './components/VehicleList';
 import fetchNui from './utils/fetchNui';
-import { ServerPromiseResp } from './types/common';
+import Header from './components/Header';
 
 const Container = styled.div<{ isDarkMode: any }>`
   flex: 1;
-  padding: 1.5rem;
+  padding: 1rem;
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
@@ -35,7 +32,6 @@ interface AppProps {
 }
 
 const App = (props: AppProps) => {
-  const history = useHistory();
   const [vehicles, setVehicles] = useState<GarageItem[] | undefined>([]);
   const [mappedVeh, setMappedVeh] = useState<any>(null);
 
@@ -65,15 +61,8 @@ const App = (props: AppProps) => {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={props.theme}>
+        <Header>Garage</Header>
         <Container isDarkMode={isDarkMode}>
-          <Header>
-            <IconButton color="primary" onClick={() => history.goBack()}>
-              <ArrowBack />
-            </IconButton>
-            <Typography fontSize={24} color="primary" fontWeight="bold">
-              Garage
-            </Typography>
-          </Header>
           {mappedVeh && <VehicleList isDarkMode={isDarkMode} vehicles={mappedVeh} />}
         </Container>
       </ThemeProvider>

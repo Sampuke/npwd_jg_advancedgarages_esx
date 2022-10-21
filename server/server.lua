@@ -21,11 +21,11 @@ RegisterNetEvent("npwd:jg-advancedgarages:getVehicles", function()
 
       if v.impound == 1 then
         v.state = "impound"
-        v.garage = json.decode(v.impound_data).reason
+        v.impound_reason = json.decode(v.impound_data).reason
       elseif v.in_garage then
-        v.state = "in garage"
+        v.state = "parked"
       else
-        v.state = "not in garage"
+        v.state = "out"
       end
     end
 
