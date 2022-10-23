@@ -46,7 +46,7 @@ jobs:
         id: auto_release
         with:
           repo_token: '${{ secrets.GITHUB_TOKEN }}'
-          title: NPWD JG Advanced Garages | ${{ steps.get_tag.outputs.VERSION_TAG }}
+          title: '${{ steps.get_tag.outputs.VERSION_TAG }}'
           prerelease: false
           files: npwd_jg_advancedgarages.zip
           automatic_release_tag: '${{ steps.get_tag.outputs.VERSION_TAG }}'
