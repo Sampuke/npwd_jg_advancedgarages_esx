@@ -1,11 +1,13 @@
-local QBCore = exports["qb-core"]:GetCoreObject()
+local ESX = exports['es_extended']:getSharedObject()
+
+
 
 local function findVehFromPlateAndLocate(plate)
-  local gameVehicles = QBCore.Functions.GetVehicles()
+  local gameVehicles = GetGamePool('CVehicle')
   for i = 1, #gameVehicles do
     local vehicle = gameVehicles[i]
     if DoesEntityExist(vehicle) then
-      if QBCore.Functions.GetPlate(vehicle) == plate then
+      if ESX.Math.Trim(GetVehicleNumberPlateText(vehicle)) == plate then
         local vehCoords = GetEntityCoords(vehicle)
         SetNewWaypoint(vehCoords.x, vehCoords.y)
         return true
@@ -40,9 +42,23 @@ end)
 RegisterNUICallback("npwd:jg-advancedgarages:requestWaypoint", function(data, cb)
   local plate = data.plate
   if findVehFromPlateAndLocate(plate) then
-    QBCore.Functions.Notify("Your vehicle has been marked", "success")
+      exports["npwd"]:createSystemNotification({
+        uniqId = "markedveh",
+        content = "Your vehicle has been marked",
+        secondaryTitle = "Vehicle",
+        keepOpen = false,
+        duration = 5000,
+        controls = false,
+      })
   else
-    QBCore.Functions.Notify("This vehicle cannot be located", "error")
+       exports["npwd"]:createSystemNotification({
+        uniqId = "markedveh",
+        content = "This vehicle cannot be located",
+        secondaryTitle = "Vehicle",
+        keepOpen = false,
+        duration = 5000,
+        controls = false,
+      })
   end
   cb({})
 end)
