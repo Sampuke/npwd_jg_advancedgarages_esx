@@ -1,9 +1,9 @@
-local QBCore = exports['qb-core']:GetCoreObject()
+local ESX = exports['es_extended']:getSharedObject()
 
 RegisterNetEvent("npwd:jg-advancedgarages:getVehicles", function()
   local src = source
-  local Player = QBCore.Functions.GetPlayer(src)
-  local garageresult = MySQL.query.await('SELECT * FROM player_vehicles WHERE citizenid = ? AND job_vehicle = ? AND gang_vehicle = ?',
+  local Player = ESX.GetPlayerFromId(src)
+  local garageresult = MySQL.query.await('SELECT * FROM owned_vehicles WHERE owner = ? AND job_vehicle = ? AND gang_vehicle = ?',
       {Player.PlayerData.citizenid, 0, 0})
 
   if garageresult[1] ~= nil then
@@ -13,12 +13,14 @@ RegisterNetEvent("npwd:jg-advancedgarages:getVehicles", function()
       v.vehicle = v.vehicle
       v.brand = ""
       v.garage = v.garage_id
+      local v.vehicle = GetLabelText(GetDisplayNameFromVehicleModel(vehicleModel))
+      local v.brand = GetLabelText(GetMakeNameFromVehicleModel(vehicleModel))
 
-      if QBCore.Shared.Vehicles[vehicleModel] then
-        v.vehicle = QBCore.Shared.Vehicles[vehicleModel].name
-        v.brand = QBCore.Shared.Vehicles[vehicleModel].brand
+      if v.vehicle == "NULL" then
+        v.vehicle = GetDisplayNameFromVehicleModel(vehicleModel)
+        v.brand = GetMakeNameFromVehicleModel(vehicleModel)
       end
-
+        
       if v.impound == 1 then
         v.state = "impound"
         v.impound_reason = json.decode(v.impound_data).reason
